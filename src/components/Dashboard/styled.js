@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   height: auto;
   width: 1120px;
   padding: 10px 5px 100px;
-  background-color: #aaa;
+  // background-color: #aaa;
 `;
 
 export const ContainerInput = styled.div`
@@ -19,7 +20,12 @@ export const ContainerInput = styled.div`
   // background-color: blue;
   padding: 20px 20px;
 
-  h1 {
+  label {
+    font-family: poppins;
+    font-size: 24px;
+    font-weight: italic;
+    color: #000;
+    margin: 0px 10px 0px 0px;
   }
 
   button {
@@ -32,13 +38,13 @@ export const ContainerInput = styled.div`
     border-radius: 5px;
     width: 50%;
     height: 100%;
-    margin: 0px 0px 0px 40px;
+    margin: 0px 40px 0px 10px;
   }
 
   input {
     background-color: #fff;
     font-family: Poppins;
-    border: none;
+    // border: none;
     border-radius: 5px;
     box-shadow: ;
     width: 100%;

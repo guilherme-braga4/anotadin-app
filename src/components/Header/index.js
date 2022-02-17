@@ -1,25 +1,32 @@
-import { HeaderStyled, ContainerStyled, HeaderUser } from "./styles.js";
+import {
+  HeaderStyled,
+  ContainerStyled,
+  HeaderUser,
+  Container,
+} from "./styles.js";
+
+import logo from "../../images/logo.png";
 
 const Header = () => {
   return (
     <>
-      <HeaderUser>
-        <h1>Seja bem Vindo</h1>
-        <div>
-          <a>Usuário Teste</a>
-        </div>
-      </HeaderUser>
-      <HeaderStyled>
-        <ContainerStyled>
+      <Container>
+        <HeaderUser>
+          <h1>Seja bem Vindo</h1>
           <div>
-            <img
-              src="https://th.bing.com/th/id/OIP.QxfgNYlRzPQso9yFvHksGgHaHa?pid=ImgDet&rs=1"
-              alt="logo anotadin"
-            ></img>
+            <a>Usuário Teste</a>
           </div>
-          <h1>Anotadin App</h1>
-        </ContainerStyled>
-      </HeaderStyled>
+        </HeaderUser>
+        <HeaderStyled>
+          <ContainerStyled>
+            <div>
+              <img src={logo} alt="logo anotadin"></img>
+              <h1>ANOTADIN App</h1>
+              <a>Estruturando a sua liberdade financeira!</a>
+            </div>
+          </ContainerStyled>
+        </HeaderStyled>
+      </Container>
     </>
   );
 };

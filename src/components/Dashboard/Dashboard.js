@@ -28,8 +28,23 @@ const Dashboard = () => {
     <Container>
       <form onSubmit={handleSubmit}>
         <ContainerInput>
-          <input name="nome" onChange={handleChange} value={form?.nome} />
-          <button>Pesquisar</button>
+          <label>Ativo</label>
+          <input
+            name="nome"
+            onChange={handleChange}
+            placeholder="Digite o Nome do Ativo"
+            value={form?.ativo}
+          />
+          <button>Adicionar</button>
+          <label>Quantidade</label>
+          <input
+            type="number"
+            name="nome"
+            onChange={handleChange}
+            placeholder="Digite o Valor Investido"
+            value={form?.quantidade}
+          />
+          <button>Adicionar</button>
         </ContainerInput>
       </form>
     </Container>
