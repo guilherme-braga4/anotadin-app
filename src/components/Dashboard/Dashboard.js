@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "./styled";
-import { ContainerInput } from "./styled";
+import { Container, ContainerInput, ContainerViewAsset } from "./styled";
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
@@ -52,17 +51,20 @@ const Dashboard = () => {
               handleAddAsset();
             }}
           >
-            Adicionar
+            Adicionar Ativo
           </button>
+        </ContainerInput>
+        <ContainerViewAsset>
           {asset.map((asset) => {
             return (
               <>
-                <div>{asset?.form?.nome}</div>
-                <div>R$ {asset?.form?.quantidade}</div>
+                <div>
+                  {asset?.form?.nome}, R$ {asset?.form?.quantidade}
+                </div>
               </>
             );
           })}
-        </ContainerInput>
+        </ContainerViewAsset>
       </form>
     </Container>
   );
