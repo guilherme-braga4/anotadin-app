@@ -65,38 +65,6 @@ export const ContainerViewAsset = styled.div`
 
   div {
     font-family: Poppins;
-    font-size: 30px;
-  }
-
-  label {
-    font-family: poppins;
-    font-size: 24px;
-    font-weight: italic;
-    color: #000;
-    margin: 0px 10px 0px 0px;
-  }
-
-  button {
-    background-color: rgb(255, 99, 71);
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    font-family: Poppins;
-    border: none;
-    border-radius: 5px;
-    width: 30%;
-    height: 100px;
-    margin: 30px 40px 0px 40px;
-  }
-
-  input {
-    background-color: #fff;
-    font-family: Poppins;
-    // border: none;
-    border-radius: 5px;
-    box-shadow: ;
-    width: 100%;
-    height: 100%;
     font-size: 20px;
   }
 `;
