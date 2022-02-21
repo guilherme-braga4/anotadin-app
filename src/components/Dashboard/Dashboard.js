@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, ContainerInput, ContainerViewAsset } from "./styled";
+import { DataGrid } from "@material-ui/data-grid";
+import { v4 as uuid } from "uuid";
+import api from "../../services/api";
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
   const [asset, setAsset] = useState([]);
+  const [data, setData] = useState([]);
   console.log("form", form);
+
+  useEffect(() => {
+    const { data: criptomoedas } = api.get("api/v1/criptomoedas");
+    if (criptomoedas) {
+      setData(criptomoedas);
+      console.log("data", data);
+    }
+  });
 
   const handleAddAsset = (event) => {
     const assetsList = Array.from(asset);
@@ -21,9 +33,16 @@ const Dashboard = () => {
 
   const handleChange = (event) => {
     console.log("event.target.value", event.target.value);
-    setForm({ ...form, [event.target.name]: event.target.value });
+    setForm({ ...form, [event.target.name]: event.target.value, id: uuid() });
     console.log("handleChange", form);
   };
+
+  //dataGrid
+  const columns = [
+    { field: "id", headerName: "ID", width: 200 },
+    { field: "nome", headerName: "Ativo", width: 200 },
+    { field: "quantidade", headerName: "Quantidade", width: 200 },
+  ];
 
   return (
     <Container>
@@ -55,11 +74,19 @@ const Dashboard = () => {
           </button>
         </ContainerInput>
         <ContainerViewAsset>
+          <DataGrid
+            rows={data}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
           {asset.map((asset) => {
             return (
               <>
                 <div>
-                  {asset?.form?.nome}, R$ {asset?.form?.quantidade}
+                  ID: {asset?.form?.id}, {asset?.form?.nome}, R${" "}
+                  {asset?.form?.quantidade}
                 </div>
               </>
             );
