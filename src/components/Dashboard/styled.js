@@ -58,6 +58,7 @@ export const ContainerViewAsset = styled.div`
   align-items: center;
   // max-width: 1000px;
   width: 100%;
+  height: 100vh;
   margin: 10px 0px;
   // background-color: yellow;
   padding: 20px 20px;
