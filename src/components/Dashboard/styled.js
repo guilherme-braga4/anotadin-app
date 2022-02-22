@@ -36,7 +36,7 @@ export const ContainerInput = styled.div`
     font-family: Poppins;
     border: none;
     border-radius: 5px;
-    width: 30%;
+    width: 50%;
     height: 100px;
     margin: 30px 40px 0px 40px;
   }
@@ -56,12 +56,12 @@ export const ContainerInput = styled.div`
 export const ContainerViewAsset = styled.div`
   justify-content: space-around;
   align-items: center;
-  // max-width: 1000px;
+  max-width: 1000px;
   width: 100%;
-  height: 100vh;
-  margin: 10px 0px;
+  height: 1000px;
+  margin: 10px auto;
   // background-color: yellow;
-  padding: 20px 20px;
+  padding: 20px 50px;
 
   div {
     font-family: Poppins;

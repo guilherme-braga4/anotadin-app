@@ -3,51 +3,55 @@ import { Container, ContainerInput, ContainerViewAsset } from "./styled";
 import { DataGrid } from "@material-ui/data-grid";
 import { v4 as uuid } from "uuid";
 import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
-  const [asset, setAsset] = useState([]);
   const [data, setData] = useState([]);
+  const [asset, setAsset] = useState([]);
 
+  //GET-> Show all Assets
   useEffect(() => {
     // try {
     console.log("aqui");
     api
-      .get("/api/v1/criptomoedas")
+      .get(`/api/v1/criptomoedas/`)
       .then((res) => {
-        // console.log("res", res);
         setData(res.data);
       })
-      // console.log("res.data", res.data);
-      // if (res.data) {
-      //   setData(res.data);
-      //   console.log("res.data", res.data);
-      // }
       .catch((error) => {
-        console.log("Algo deu errado" + "" + error);
+        console.log("Algo deu errado" + error);
       });
   }, []);
 
-  const handleAddAsset = (event) => {
-    const assetsList = Array.from(asset);
-    console.log("assetList", assetsList);
-    assetsList.push({ form });
-    setAsset(assetsList);
-    console.log("asset", asset);
-  };
-
+  //POST-> Create a New Asset
   async function handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
     console.log("submit");
+    console.log("aqui 2");
+    const data = {
+      nome: form?.nome,
+      quantidade: form?.quantidade,
+    };
+    api
+      .post(`/api/v1/criptomoedas/`, data)
+      .then((res) => {
+        console.log("res.data", res.data);
+        setData(res.data);
+      })
+      .catch((error) => {
+        console.log("Algo deu errado" + error);
+      });
   }
 
+  // Lidando com as mudanças do componente
   const handleChange = (event) => {
     console.log("event.target.value", event.target.value);
-    setForm({ ...form, [event.target.name]: event.target.value, id: uuid() });
+    setForm({ ...form, [event.target.name]: event.target.value });
     console.log("handleChange", form);
   };
 
-  //dataGrid
+  //dataGrid - Tabela
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
     { field: "nome", headerName: "Ativo", width: 300 },
@@ -55,6 +59,16 @@ const Dashboard = () => {
     { field: "edit", headerName: "Editar", width: 250 },
     { field: "delete", headerName: "Excluir", width: 250 },
   ];
+
+  //Inserir as informações localmente
+
+  // const handleAddAsset = (event) => {
+  //   const assetsList = Array.from(asset);
+  //   console.log("assetList", assetsList);
+  //   assetsList.push({ form });
+  //   setAsset(assetsList);
+  //   console.log("asset", asset);
+  // };
 
   return (
     <Container>
@@ -76,33 +90,25 @@ const Dashboard = () => {
               placeholder="Digite o Valor Investido"
             />
           </div>
-          <button
-            type="submit"
-            onClick={() => {
-              handleAddAsset();
-            }}
-          >
-            Adicionar Ativo
-          </button>
+          <Link to="/home">
+            <button
+              type="submit"
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Adicionar Ativo
+            </button>
+          </Link>
         </ContainerInput>
         <ContainerViewAsset>
           <DataGrid
             rows={data}
             columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
+            pageSize={20}
+            rowsPerPageOptions={[20]}
             checkboxSelection
           />
-          {asset.map((asset) => {
-            return (
-              <>
-                <div>
-                  ID: {asset?.form?.id}, {asset?.form?.nome}, R${" "}
-                  {asset?.form?.quantidade}
-                </div>
-              </>
-            );
-          })}
         </ContainerViewAsset>
         ;
       </form>
