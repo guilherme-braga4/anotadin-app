@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: auto;
-  width: 1120px;
+  width: 100%;
   padding: 10px 5px 100px;
   // background-color: #aaa;
 `;
@@ -15,10 +15,9 @@ export const ContainerInput = styled.div`
   justify-content: space-around;
   align-items: center;
   max-width: 1000px;
-  width: 100vw;
-  // margin: 10px 0px;
+  width: 50%;
   // background-color: blue;
-  padding: 20px 20px;
+  padding: 20px 20px 20px 100px;
 
   label {
     font-family: poppins;
@@ -36,7 +35,7 @@ export const ContainerInput = styled.div`
     font-family: Poppins;
     border: none;
     border-radius: 5px;
-    width: 50%;
+    width: 70%;
     height: 100px;
     margin: 30px 40px 0px 40px;
   }
@@ -66,5 +65,6 @@ export const ContainerViewAsset = styled.div`
   div {
     font-family: Poppins;
     font-size: 20px;
+    background-color: yellow;
   }
 `;
