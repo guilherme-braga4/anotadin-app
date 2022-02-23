@@ -45,7 +45,6 @@ export const ContainerInput = styled.div`
     font-family: Poppins;
     // border: none;
     border-radius: 5px;
-    box-shadow: ;
     width: 100%;
     height: 100%;
     font-size: 20px;
@@ -65,6 +64,7 @@ export const ContainerViewAsset = styled.div`
   div {
     font-family: Poppins;
     font-size: 20px;
-    background-color: yellow;
+
+    // background-color: yellow;
   }
 `;

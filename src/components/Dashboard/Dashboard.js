@@ -4,6 +4,8 @@ import { DataGrid } from "@material-ui/data-grid";
 import { v4 as uuid } from "uuid";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
+import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
@@ -56,8 +58,18 @@ const Dashboard = () => {
     { field: "id", headerName: "ID", width: 150 },
     { field: "nome", headerName: "Ativo", width: 300 },
     { field: "quantidade", headerName: "Quantidade", width: 250 },
-    { field: "edit", headerName: "Editar", width: 250 },
-    { field: "delete", headerName: "Excluir", width: 250 },
+    {
+      field: "edit",
+      headerName: "Editar",
+      width: 150,
+      renderCell: (params) => <AutoFixNormalIcon />,
+    },
+    {
+      field: "delete",
+      headerName: "Excluir",
+      width: 150,
+      renderCell: (params) => <RemoveCircleIcon />,
+    },
   ];
 
   //Inserir as informações localmente
@@ -107,7 +119,7 @@ const Dashboard = () => {
             columns={columns}
             pageSize={20}
             rowsPerPageOptions={[20]}
-            checkboxSelection
+            disablecheckboxSelection
           />
         </ContainerViewAsset>
         ;
