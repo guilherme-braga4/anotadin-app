@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://62139b9589fad53b1ffac6f2.mockapi.io",
+  baseURL: process.env.REACT_APP_MOCKAPI_URL ,
 });
 
 export default api;
