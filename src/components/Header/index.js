@@ -5,6 +5,8 @@ import {
   Container,
 } from "./styles.js";
 
+import { ButtonNoBackground, ButtonFilled } from '../Buttons/styles'
+
 import logo from "../../images/logo.png";
 
 const Header = () => {
@@ -13,16 +15,18 @@ const Header = () => {
       <Container>
         <HeaderUser>
           <h1>Seja bem Vindo</h1>
-          <div>
-            <a>Usuário Teste</a>
-          </div>
+          <a>Usuário Teste</a>
         </HeaderUser>
         <HeaderStyled>
           <ContainerStyled>
             <div>
               <img src={logo} alt="logo anotadin"></img>
-              <h1>ANOTADIN App</h1>
+              <h1>Anotadin</h1>
               <a>Estruturando a sua liberdade financeira!</a>
+            </div>
+            <div>
+              <ButtonFilled>Login</ButtonFilled>
+              <ButtonNoBackground>Cadastre-se</ButtonNoBackground>
             </div>
           </ContainerStyled>
         </HeaderStyled>

@@ -7,6 +7,7 @@ const Routering = () => {
   return (
     <Router>
       <Routes>
+      <Route path="home" element={<App />} />
         <Route path="home" element={<App />} />
         <Route path="error" element={<Error />} />
       </Routes>

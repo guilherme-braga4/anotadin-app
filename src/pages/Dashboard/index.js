@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, ContainerInput, ContainerViewAsset } from "./styled";
+import { Container, ContainerInputButton, ContainerInputs, ContainerViewAsset, InputButtonBorderLine } from "./styled";
+import { ButtonAdd } from '../../components/Buttons/styles'
 import { DataGrid } from "@material-ui/data-grid";
-import { v4 as uuid } from "uuid";
 import api from "../../services/api";
-import { Link } from "react-router-dom";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
@@ -17,7 +16,7 @@ const Dashboard = () => {
     // try {
     console.log("aqui");
     api
-      .get(`/api/v1/criptomoedas/`)
+      .get(`/criptomoedas`)
       .then((res) => {
         setData(res.data);
       })
@@ -36,7 +35,7 @@ const Dashboard = () => {
       quantidade: form?.quantidade,
     };
     api
-      .post(`/api/v1/criptomoedas/`, data)
+      .post(`/criptomoedas`, data)
       .then((res) => {
         console.log("res.data", res.data);
         setData(res.data);
@@ -62,7 +61,7 @@ const Dashboard = () => {
       field: "edit",
       headerName: "Editar",
       width: 150,
-      renderCell: (params) => <AutoFixNormalIcon />,
+      renderCell: (params) => <AutoFixNormalIcon/>,
     },
     {
       field: "delete",
@@ -85,34 +84,39 @@ const Dashboard = () => {
   return (
     <Container>
       <form onSubmit={handleSubmit}>
-        <ContainerInput>
-          <div>
-            <label>Ativo</label>
-            <input
-              name="nome"
-              onChange={handleChange}
-              placeholder="Digite o Nome do Ativo"
-            />
-            <label>Quantidade</label>
-
-            <input
-              type="number"
-              name="quantidade"
-              onChange={handleChange}
-              placeholder="Digite o Valor Investido"
-            />
-          </div>
-          <Link to="/home">
-            <button
-              type="submit"
-              onClick={() => {
-                handleSubmit();
-              }}
-            >
-              Adicionar Ativo
-            </button>
-          </Link>
-        </ContainerInput>
+        <ContainerInputButton>
+          {/* <InputButtonBorderLine> */}
+            <header>
+              <ContainerInputs>
+                <div>
+                  <label>Ativo</label>
+                  <input
+                    name="nome"
+                    onChange={handleChange}
+                    placeholder="Digite o Nome do Ativo"
+                  />
+                </div>
+                <div>
+                  <label>Quantidade</label>              
+                  <input
+                    type="number"
+                    name="quantidade"
+                    onChange={handleChange}
+                    placeholder="Digite o Valor Investido"
+                  />
+                </div>
+                <ButtonAdd
+                  type="submit"
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                >
+                  Adicionar Ativo
+                </ButtonAdd>
+              </ContainerInputs>
+            </header>    
+          {/* </InputButtonBorderLine> */}
+        </ContainerInputButton>
         <ContainerViewAsset>
           <DataGrid
             rows={data}
@@ -122,7 +126,6 @@ const Dashboard = () => {
             disablecheckboxSelection
           />
         </ContainerViewAsset>
-        ;
       </form>
     </Container>
   );
