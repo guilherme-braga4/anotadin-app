@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  background-color: red;
+`
+
+export const ContainerDashboard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,7 +106,7 @@ export const ContainerViewAsset = styled.div`
   width: 100%;
   height: 100%;
   margin: 10px auto;
-  background-color: #2a2d3a;
+  background-color: #1b1a21;
   border-radius: 30px;
 
   div {

@@ -5,10 +5,7 @@ import Routering from "./routes";
 
 function App() {
   return (
-    <div className="container">
-      <Header />
-      <Dashboard />
-    </div>
+    <Routering/>
   );
 }
 

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Container, ContainerInputButton, ContainerInputs, ContainerViewAsset, InputButtonBorderLine } from "./styled";
+import { Container, ContainerDashboard, ContainerInputButton, ContainerInputs, ContainerViewAsset, InputButtonBorderLine } from "./styled";
 import { ButtonAdd } from '../../components/Buttons/styles'
 import { DataGrid } from "@material-ui/data-grid";
 import api from "../../services/api";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import Header from '../../components/Header/index'
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
@@ -83,6 +84,8 @@ const Dashboard = () => {
 
   return (
     <Container>
+    <Header/>
+    <ContainerDashboard>
       <form onSubmit={handleSubmit}>
         <ContainerInputButton>
           {/* <InputButtonBorderLine> */}
@@ -127,6 +130,7 @@ const Dashboard = () => {
           />
         </ContainerViewAsset>
       </form>
+    </ContainerDashboard>
     </Container>
   );
 };

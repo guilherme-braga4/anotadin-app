@@ -24,7 +24,7 @@ export const ButtonNoBackground = styled.button`
 
 export const ButtonFilled = styled.button`
 {
-  background-color: #eb1484;
+  background-image: linear-gradient(101.12deg,#eb1484 27.35%,#c91cc3 99.99%,#c81cc5 100%,#c81cc5 0);
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -44,7 +44,7 @@ export const ButtonFilled = styled.button`
 
 export const ButtonAdd = styled.button`
 {
-  background-color: #eb1484;
+  background-image: linear-gradient(101.12deg,#eb1484 27.35%,#c91cc3 99.99%,#c81cc5 100%,#c81cc5 0);
   color: white;
   font-size: 18px;
   cursor: pointer;
