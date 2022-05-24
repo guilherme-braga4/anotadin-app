@@ -12,8 +12,8 @@ const Routering = () => {
   return (
     <Router>
       <Routes>
-        <Route path="home" element={<Home />} />
-        <Route path="login" element={<Login />} /> 
+        <Route path="/home" element={<Home />} />
+        <Route path="*" element={<Login />} /> 
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="error" element={<Error />} />
       </Routes>
