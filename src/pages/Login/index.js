@@ -1,26 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../../components/Header/index'
 import { Container, ContainerForm, ContainerImage, ContainerFormInputButton, ContainerButton } from './styled'
 import { ButtonFilled, ButtonNoBackground } from '../../components/Buttons/styles';
 import logo from "../../images/logo.png";
 import logocripto from "../../images/cripto.png";
-
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import api from '../../services/api'
 
 const Login = () => {
+  const [data, setData] = useState({})
+
+ async function handleSubmit (values) {
+   try {
+   const {data: response} = await api.post('/home', values)
+    if (response) {
+      //res -> 
+      setData(response)
+      console.log("response", response)
+      console.log("data state", data)
+    }
+  }
+  catch (err) {
+    console.log("Algo deu errado ao efetuar o Login")
+  }
+ }
+
   return ( 
     <Container>
       <ContainerForm>
         <ContainerFormInputButton>
-          <form>
+          <Formik
+            initialValues={{
+              email: '',
+              senha: ''
+            }}
+            // validationSchema={SignupSchema}
+            onSubmit={(values) => handleSubmit(values)}
+            >
+            <Form>
           <h1>Anotadin</h1>
           <img src={logo} size={20}/>
             <div>
               <label>Email</label>
-              <input placeholder="Email"/>
+              <Field placeholder="Email" name="email" type="email"/>
             </div>
             <div>
               <label>Senha</label>
-              <input placeholder="Senha"/>
+              <Field placeholder="Senha" name="senha" type="password"/>
             </div>
             <ContainerButton>
               <div>
@@ -28,7 +55,8 @@ const Login = () => {
                 <ButtonNoBackground>Cadastre-se</ButtonNoBackground>
               </div>
             </ContainerButton>
-          </form>
+            </Form>
+          </Formik>
         </ContainerFormInputButton>
       </ContainerForm>
       <ContainerImage>
