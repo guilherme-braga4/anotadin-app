@@ -94,7 +94,7 @@ const Login = () => {
               <p>Complete os campos para efetuar o seu login!</p>
                 <div>
                   <label>Email</label>
-                  <Field placeholder="Email" name="email" type="email"/>
+                  <Field placeholder="email@email.com" name="email" type="email"/>
                   {errors.email && touched.email ? <div className="yup-container">{errors.email}</div> : null}
                 </div>
                 <div>
@@ -150,7 +150,7 @@ const Login = () => {
                   </div>
                   <div>
                     <label>Email</label>
-                    <Field name="email" type="email" />
+                    <Field placeholder="email@email.com" name="email" type="email" />
                     {errors.email && touched.email ? <div className="yup-container">{errors.email}</div> : null}
                     <div>
                   </div>

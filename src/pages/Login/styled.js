@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  background-color: red;
+  // background-color: red;
   display:flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +166,7 @@ export const ContainerButton = styled.div`
     // background-color: red;
     display:flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: row;
   }
 `

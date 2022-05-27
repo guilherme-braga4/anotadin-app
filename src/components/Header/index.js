@@ -3,6 +3,7 @@ import {
   ContainerStyled,
   HeaderUser,
   Container,
+  ContainerButton
 } from "./styles.js";
 
 import { ButtonNoBackground, ButtonFilled } from '../Buttons/styles'
@@ -24,10 +25,10 @@ const Header = () => {
               <h1>Anotadin</h1>
               <a>Estruturando a sua liberdade financeira!</a>
             </div>
-            <div>
+            <ContainerButton>
               <ButtonFilled>Login</ButtonFilled>
               <ButtonNoBackground>Cadastre-se</ButtonNoBackground>
-            </div>
+            </ContainerButton>
           </ContainerStyled>
         </HeaderStyled>
       </Container>

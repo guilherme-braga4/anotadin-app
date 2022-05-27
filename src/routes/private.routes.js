@@ -10,9 +10,6 @@ const PublicRoutering = () => {
     <Router>
       <Routes>
           <Route path="dashboard" element={<Dashboard />} />
-          {/* <Route path="/home" element={<Home />} />
-          <Route path="*" element={<Login />} /> 
-          <Route path="error" element={<Error />} /> */}
       </Routes>
     </Router>
   );

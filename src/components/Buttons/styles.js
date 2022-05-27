@@ -10,7 +10,6 @@ export const ButtonNoBackground = styled.button`
   border-radius: 5px;
   width: 150px;
   height: 40px;
-  margin: 30px 40px 0px 40px;
   font-weight: bold;
   font-size: 16px;
 }
@@ -31,7 +30,6 @@ export const ButtonFilled = styled.button`
   border-radius: 5px;
   width: 150px;
   height: 40px;
-  margin: 30px 40px 0px 40px;
   font-weight: bold;
   border: none;
 
@@ -53,10 +51,30 @@ export const ButtonAdd = styled.button`
   min-width: 250px;
   width: 250px;
   height: 45px;
-  margin: 30px 40px 0px 40px;
 }
 
  :hover {
   opacity: 0.8;
+}
+`
+
+export const ButtonFeaturesNoBackground = styled.button`
+{
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border-color: #eb1484;
+  border-radius: 5px;
+  width: 200px;
+  height: 60px;;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+ :hover {
+  background-color: #eb1484;
+  color: white;
+  cursor: pointer;
 }
 `
