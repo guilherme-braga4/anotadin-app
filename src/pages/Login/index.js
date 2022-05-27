@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+// import { AuthContext } from '../../contexts/AuthContext'
 import Header from '../../components/Header/index'
 import { Container, ContainerForm, ContainerImage, ContainerFormInputButton, ContainerButton } from './styled'
 import { ButtonFilled, ButtonNoBackground } from '../../components/Buttons/styles';
@@ -13,6 +14,7 @@ import '../../../src/index.css'
 const Login = () => {
   const [data, setData] = useState({})
   const [cadastro, setCadastro] = useState(false)
+  // const { auth, setAuth } = useContext(AuthContext)
 
  async function handleSubmit (values) {
    try {
