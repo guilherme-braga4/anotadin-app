@@ -81,6 +81,8 @@ export const ContainerForm  = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+
 `
 
 export const ContainerFormInputButton  = styled.div`
@@ -90,8 +92,8 @@ export const ContainerFormInputButton  = styled.div`
   display:flex;
   align-items: center;
   justify-content: space-around;
-  height: 70%;
-  padding: 2rem;
+  padding: 1rem;
+  margin-top: 1rem;
 
   form {
     // background-color: white;
@@ -108,6 +110,11 @@ export const ContainerFormInputButton  = styled.div`
     font-size: 50px;
     padding: 0 0px;
     color: #eb1484;
+  }
+
+  p {
+    color: white;
+    padding: 10px;
   }
 
   img {
@@ -142,7 +149,7 @@ export const ContainerFormInputButton  = styled.div`
 
 
   label {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     color: white;
     margin-bottom: 20px;
