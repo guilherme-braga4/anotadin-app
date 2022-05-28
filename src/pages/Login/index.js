@@ -17,12 +17,12 @@ const Login = () => {
   // const { auth, setAuth } = useContext(AuthContext)
 
  async function handleSubmit (values) {
+   console.log("handleSubmit")
    try {
-   const {data: response} = await api.post('/home', values)
+   const {data: response} = await api.post('/login', values)
     if (response) {
       //res -> 
       setData(response)
-      console.log("response", response)
       console.log("data state", data)
     }
   }
@@ -32,12 +32,18 @@ const Login = () => {
  }
 
  async function handleSignIn (values) {
+  console.log("handleSignIn")
   try {
-  const {data: response} = await api.post('/home', values)
+    const user = {
+      nome: values.nome,
+      telefone: values.telefone,
+      email: values.email,
+      password: values.password  
+    }
+  const {data: response} = await api.post('/user/', user)
    if (response) {
      //res -> 
      setData(response)
-     console.log("response", response)
      console.log("data state", data)
    }
  }
@@ -50,10 +56,7 @@ const Login = () => {
 
  const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Email inválido, digite novamente').required('Campo obrigatório!'),
-  senha: Yup.string()
-    .min(6, 'A senha precisa incluir pelo menos 6 digitos')
-    .max(14, 'A senha não pode ter mais de 14 caracteres')
-    .required('Campo obrigatório!'),
+  password: Yup.string().required('Campo obrigatório!')
 });
 
   //phoneRegExp -phone validate expression
@@ -63,15 +66,15 @@ const Login = () => {
     .matches(phoneRegExp, 'Formato Inválido - Tente: (99)123456789')
     .required('Campo obrigatório!'),
   email: Yup.string().email('Email inválido, digite novamente').required('Campo obrigatório!'),
-  senha: Yup.string()
+  password: Yup.string()
     .min(6, 'A senha precisa incluir pelo menos 6 digitos')
     .max(14, 'A senha não pode ter mais de 14 caracteres')
     .required('Campo obrigatório!'),
-  confirmarSenha: Yup.string()
+  confirmPassword: Yup.string()
     .min(6, 'A senha precisa incluir pelo menos 6 digitos')
     .max(14, 'A senha não pode ter mais de 14 caracteres')
     .required('Campo obrigatório!')
-    .oneOf([Yup.ref('senha')],'As senhas são iguais')
+    .oneOf([Yup.ref('password')],'As senhas não são iguais')
 });
   
  if (cadastro == false) {
@@ -82,7 +85,7 @@ const Login = () => {
           <Formik
             initialValues={{
               email: '',
-              senha: ''
+              password: ''
             }}
             validationSchema={SigninSchema}
             onSubmit={(values) => handleSubmit(values)}
@@ -99,12 +102,12 @@ const Login = () => {
                 </div>
                 <div>
                   <label>Senha</label>
-                  <Field placeholder="Senha" name="senha" type="password"/>
-                  {errors.senha && touched.senha ? <div className="yup-container">{errors.senha}</div> : null}
+                  <Field placeholder="Senha" name="password" type="password"/>
+                  {errors.password && touched.password ? <div className="yup-container">{errors.password}</div> : null}
                 </div>
                 <ContainerButton>
                   <div>
-                    <ButtonFilled type="submit">Login</ButtonFilled>
+                    <ButtonFilled type="submit" >Login</ButtonFilled>
                     <ButtonNoBackground type="submit" onClick={() => setCadastro(true)}>Cadastre-se</ButtonNoBackground>
                   </div>
                 </ContainerButton>
@@ -130,7 +133,7 @@ const Login = () => {
                 nome: '',
                 telefone: '',
                 email: '',
-                senha: '',
+                password: '',
               }}
               validationSchema={SignupSchema}
               onSubmit={(values) => handleSignIn(values)}
@@ -155,13 +158,13 @@ const Login = () => {
                     <div>
                   </div>
                     <label>Senha</label>
-                    <Field placeholder="Senha" name="senha" type="password"/>
-                    {errors.senha && touched.senha ? <div className="yup-container">{errors.senha}</div> : null}
+                    <Field placeholder="Senha" name="password" type="password"/>
+                    {errors.password && touched.password ? <div className="yup-container">{errors.password}</div> : null}
                   </div>
                   <div>
                     <label>Confirme a Senha</label>
-                    <Field placeholder="Senha" name="confirmarSenha" type="password"/>
-                    {errors.confirmarSenha && touched.confirmarSenha ? <div className="yup-container">{errors.confirmarSenha}</div> : null}
+                    <Field placeholder="Senha" name="confirmPassword" type="password"/>
+                    {errors.confirmPassword && touched.confirmPassword ? <div className="yup-container">{errors.confirmPassword}</div> : null}
                   </div>
                   <ContainerButton>
                     <div>
