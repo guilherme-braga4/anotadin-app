@@ -11,7 +11,7 @@ import "yup-phone";
 import api from '../../services/api'
 import '../../../src/index.css'
 import { useNavigate, Navigate } from "react-router-dom";
-import { WindowTwoTone } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -27,6 +27,7 @@ const Login = () => {
     if (response) {
       //res -> 
      console.log("response", response)
+     toast.success("Login Realizado com Sucesso!");
      setData(response)
      localStorage.setItem("@AnotadinApp Auth", true);
      localStorage.setItem("@AnotadinApp JWT", response.token.token);
@@ -41,7 +42,7 @@ const Login = () => {
     }
   }
   catch (err) {
-    console.log("Algo deu errado ao efetuar o Login")
+    toast.error("Algo deu errado ao efetuar o Login")
   }
  }
 
@@ -57,12 +58,13 @@ const Login = () => {
   const {data: response} = await api.post('/user/', user)
    if (response) {
      //res -> 
+     toast.success("Cadastro Realizado com Sucesso!");
      setData(response)
      console.log("data state", data)
    }
  }
  catch (err) {
-   console.log("Algo deu errado ao efetuar o Login")
+  toast.error("Algo deu errado ao efetuar o Login")
  }
 }
 

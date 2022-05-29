@@ -3,6 +3,7 @@ import { Container, ContainerDisplayModal, ContainerButton, ContainerForm } from
 import { ButtonFilled, ButtonNoBackground } from '../Buttons/styles';
 import api from '../../services/api'
 import AuthContext from '../../contexts/AuthContext'
+import { toast } from 'react-toastify';
 
 const ModalCripto = ({setOpenModal, dataModal}) => {
   const userId = localStorage.getItem("@AnotadinApp User_Id")
@@ -14,11 +15,26 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
   console.log("form", form)
  
   async function createCriptomoeda () {
-    const res = api.post('/cripto/', form)
-    if (res) {
-      console.log(res.data)
+    try {
+    const res = await api.post('/cripto/', form)
+    if (res.data.data) {
+      console.log("response", res.data.data)
+      toast('💸 Cripto adicionada aos Registros', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+      toast.success("Acesse [Rendimentos] para conferir");
       setOpenModal(false)
     }
+  } catch (error) {
+    console.error(error)
+    toast.error("Falha ao criar o Registro da Criptomoeda")
+  }
   }
 
   //----> Função que exibe a Quantidade, de acordo com o (Preço de Compra) e (Quantidade Comprada) (em R$ ou $) 
