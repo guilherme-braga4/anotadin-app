@@ -5,14 +5,15 @@ import Dashboard from "../pages/Dashboard";
 import Error from "../error"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const PublicRoutering = () => {
+const PrivateRoutering = () => {
+
   return (
     <Router>
       <Routes>
-          <Route path="dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Dashboard/>} />
       </Routes>
     </Router>
   );
 };
 
-export default PublicRoutering;
+export default PrivateRoutering;

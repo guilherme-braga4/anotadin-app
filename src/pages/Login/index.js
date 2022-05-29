@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-// import { AuthContext } from '../../contexts/AuthContext'
+import React, {useState, useContext, useEffect} from 'react';
+import { AuthContext } from '../../contexts/AuthContext'
 import Header from '../../components/Header/index'
 import { Container, ContainerForm, ContainerImage, ContainerFormInputButton, ContainerButton } from './styled'
 import { ButtonFilled, ButtonNoBackground } from '../../components/Buttons/styles';
@@ -10,11 +10,14 @@ import * as Yup from 'yup';
 import "yup-phone";
 import api from '../../services/api'
 import '../../../src/index.css'
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
-  const [data, setData] = useState({})
+  const navigate = useNavigate()
+
   const [cadastro, setCadastro] = useState(false)
-  // const { auth, setAuth } = useContext(AuthContext)
+  const { auth, setAuth, data, setData } = useContext(AuthContext)
 
  async function handleSubmit (values) {
    console.log("handleSubmit")
@@ -22,8 +25,12 @@ const Login = () => {
    const {data: response} = await api.post('/login', values)
     if (response) {
       //res -> 
-      setData(response)
-      console.log("data state", data)
+     console.log("response", response)
+     setData(response)
+     setAuth(true)
+     console.log("data state", data)
+    //  localStorage.setItem('JWT', response.token.token);
+     
     }
   }
   catch (err) {

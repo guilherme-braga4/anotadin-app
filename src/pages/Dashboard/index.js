@@ -22,7 +22,7 @@ const Dashboard = () => {
         setData(res.data);
       })
       .catch((error) => {
-        console.log("Algo deu errado" + error);
+        console.log("Algo deu errado " + error);
       });
   }, []);
 

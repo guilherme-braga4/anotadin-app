@@ -1,3 +1,4 @@
+import React, {useContext} from 'react';
 import {
   HeaderStyled,
   ContainerStyled,
@@ -5,18 +6,21 @@ import {
   Container,
   ContainerButton
 } from "./styles.js";
-
 import { ButtonNoBackground, ButtonFilled } from '../Buttons/styles'
-
 import logo from "../../images/logo.png";
+import { AuthContext } from '../../contexts/AuthContext'
+
 
 const Header = () => {
+  const { data, setAuth } = useContext(AuthContext)
+  console.log("data Header", data)
+
   return (
     <>
       <Container>
         <HeaderUser>
           <h1>Seja bem Vindo</h1>
-          <a>Usuário Teste</a>
+          <a>{data.user.nome}</a>
         </HeaderUser>
         <HeaderStyled>
           <ContainerStyled>
@@ -26,8 +30,9 @@ const Header = () => {
               <a>Estruturando a sua liberdade financeira!</a>
             </div>
             <ContainerButton>
-              <ButtonFilled>Login</ButtonFilled>
-              <ButtonNoBackground>Cadastre-se</ButtonNoBackground>
+              <ButtonFilled>Rendimentos</ButtonFilled>
+              <ButtonFilled>Perfil</ButtonFilled>
+              <ButtonNoBackground onClick={() => {setAuth(false)}}>Sair</ButtonNoBackground>
             </ContainerButton>
           </ContainerStyled>
         </HeaderStyled>
