@@ -10,14 +10,15 @@ import * as Yup from 'yup';
 import "yup-phone";
 import api from '../../services/api'
 import '../../../src/index.css'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import { WindowTwoTone } from '@mui/icons-material';
 
 
 const Login = () => {
   const navigate = useNavigate()
 
   const [cadastro, setCadastro] = useState(false)
-  const { auth, setAuth, data, setData } = useContext(AuthContext)
+  const { data, setData } = useContext(AuthContext)
 
  async function handleSubmit (values) {
    console.log("handleSubmit")
@@ -27,10 +28,17 @@ const Login = () => {
       //res -> 
      console.log("response", response)
      setData(response)
-     setAuth(true)
+     localStorage.setItem("@AnotadinApp Auth", true);
+     localStorage.setItem("@AnotadinApp JWT", response.token.token);
+     <Navigate to="/dashboard" replace={true} />
+     navigate("/dashboard", { replace: true })
+     window.location.reload();
+    //  localStorage.setItem("@AnotadinApp User", {
+    //   id: response.user.id,
+    //   nome: response.user.nome, 
+    //   email: response.user.email
+    // });
      console.log("data state", data)
-    //  localStorage.setItem('JWT', response.token.token);
-     
     }
   }
   catch (err) {

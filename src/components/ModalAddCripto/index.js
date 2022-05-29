@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { Container, ContainerDisplayModal, ContainerButton, ContainerForm } from './styles.js'
 import { ButtonFilled, ButtonNoBackground } from '../Buttons/styles';
 import api from '../../services/api'
+import AuthContext from '../../contexts/AuthContext'
 
 const ModalCripto = ({setOpenModal, dataModal}) => {
+  const [ data ] = useContext(AuthContext)
 
-  // console.log("setOpenModal", setOpenModal)
-  // console.log("dataModal", dataModal)
-  const [form, setForm] = useState({nome: dataModal.name, simbolo: dataModal.symbol})
+  const [form, setForm] = useState({user_id: data.id, nome: dataModal.name, simbolo: dataModal.symbol})
   const [quantidade, setQuantidade] = useState(0)
 
   console.log("form", form)

@@ -9,11 +9,14 @@ import {
 import { ButtonNoBackground, ButtonFilled } from '../Buttons/styles'
 import logo from "../../images/logo.png";
 import { AuthContext } from '../../contexts/AuthContext'
+import { useNavigate } from "react-router-dom";
+
 
 
 const Header = () => {
-  const { data, setAuth } = useContext(AuthContext)
+  const { data } = useContext(AuthContext)
   console.log("data Header", data)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -32,7 +35,12 @@ const Header = () => {
             <ContainerButton>
               <ButtonFilled>Rendimentos</ButtonFilled>
               <ButtonFilled>Perfil</ButtonFilled>
-              <ButtonNoBackground onClick={() => {setAuth(false)}}>Sair</ButtonNoBackground>
+              <ButtonNoBackground onClick={() => {
+                navigate("/login", { replace: true }) 
+                localStorage.removeItem("@AnotadinApp Auth")
+                localStorage.removeItem("@AnotadinApp JWT")
+                window.location.reload();
+                }}>Sair</ButtonNoBackground>
             </ContainerButton>
           </ContainerStyled>
         </HeaderStyled>
