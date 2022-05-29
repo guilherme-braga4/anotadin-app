@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Container, ContainerDashboard, ContainerInputButton, ContainerInputs, ContainerViewAsset, InputButtonBorderLine } from "./styled";
+import { Container, ContainerDashboard, ContainerInputButton, ContainerInputs, ContainerViewAsset, InputButtonBorderLine, ContainerForm } from "./styled";
 import { ButtonAdd } from '../../components/Buttons/styles'
 import { DataGrid } from "@material-ui/data-grid";
 import api from "../../services/api";
 import { apiCoin } from "../../services/api";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import Modal from '@mui/material/Modal';
 import Header from '../../components/Header/index'
 import '../../../src/index.css'
+import ModalCripto from '../../components/ModalAddCripto'
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
   const [data, setData] = useState([]);
-  const [asset, setAsset] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [dataModal, setDataModal] = useState({});
+  const [searchName, setSearchName] = useState("");
+  const [searchSymbol, setSearchSymbol] = useState("");
 
+  console.log("dataModal", dataModal)
+  
   //GET-> Show all Assets
   useEffect(() => {
     async function fetchCriptos () {
@@ -37,9 +44,44 @@ const Dashboard = () => {
   // Lidando com as mudanças do componente
   const handleChange = (event) => {
     console.log("event.target.value", event.target.value);
+    if (event.target.name == "nome") {
+      setSearchName(event.target.value)
+    }
+    if (event.target.name == "simbolo") {
+      setSearchSymbol(event.target.value)
+    }
     setForm({ ...form, [event.target.name]: event.target.value });
     console.log("handleChange", form);
   };
+
+  console.log("searchName", searchName)
+  console.log("searchSymbol", searchSymbol)
+
+  //----> Filtering Cripto by Name: Caso haja estado de "Search", irá atuar como filtro; caso não, atuará como (data)
+  //OBS: é um filtro duplo, capaz de Pesquisar por Nome ou Símbolo
+  let filterCoinsName
+  function filtering () {
+     filterCoinsName = data.filter((coin) => coin.name.toLowerCase()
+    .includes(searchName.toLowerCase()))
+    if (filterCoinsName.length < data.length) {
+      filterCoinsName = filterCoinsName.filter((coin) => coin.symbol.toLowerCase()
+      .includes(searchSymbol.toLowerCase()))
+      return filterCoinsName
+    }
+    if (searchName == "") {
+      console.log("filtrando apenas o símbolo", filterCoinsName)
+      filterCoinsName = data.filter((coin) => coin.symbol.toLowerCase()
+      .includes(searchSymbol.toLowerCase()))
+    }
+    return filterCoinsName
+}
+
+  // console.log("filterCoinsName", filterCoinsName)
+
+  let dataFiltered = filtering()
+  console.log("dataFiltered", dataFiltered)
+  //-------->>>>
+
 
   //dataGrid - Tabela
   const columns = [
@@ -66,7 +108,8 @@ const Dashboard = () => {
       renderCell: (params) => <ButtonAdd
       type="submit"
       onClick={() => {
-        createNewAsset();
+        setDataModal(data.find((item) => {return (item.id == params.row.id)}))
+        setOpenModal(true)
       }}
     >
       Adicionar Ativo
@@ -74,21 +117,16 @@ const Dashboard = () => {
     },
   ];
 
-  //Inserir as informações localmente
-
-  // const handleAddAsset = (event) => {
-  //   const assetsList = Array.from(asset);
-  //   console.log("assetList", assetsList);
-  //   assetsList.push({ form });
-  //   setAsset(assetsList);
-  //   console.log("asset", asset);
-  // };
-
   return (
     <Container>
     <Header/>
+    <Modal
+          open={openModal}
+        >
+          <ModalCripto setOpenModal={setOpenModal} dataModal={dataModal}/>
+    </Modal>
     <ContainerDashboard>
-      <form>
+      <ContainerForm>
         <ContainerInputButton>
           {/* <InputButtonBorderLine> */}
             <header>
@@ -98,7 +136,7 @@ const Dashboard = () => {
                   <input
                     name="nome"
                     onChange={handleChange}
-                    // placeholder="Digite o Nome do Ativo"
+                    placeholder="Digite o Nome do Ativo"
                     type="text"
                   />
                 </div>
@@ -106,9 +144,9 @@ const Dashboard = () => {
                   <label>Pesquisar Símbolo</label>              
                   <input
                     type="text"
-                    name="quantidade"
+                    name="simbolo"
                     onChange={handleChange}
-                    // placeholder="Digite o Valor Investido"
+                    placeholder="Digite o Símbolo da Criptomoeda"
                   />
                 </div>
                 {/* <ButtonAdd
@@ -125,14 +163,14 @@ const Dashboard = () => {
         </ContainerInputButton>
         <ContainerViewAsset>
           <DataGrid
-            rows={data}
+            rows={dataFiltered}
             columns={columns}
             pageSize={50}
             rowsPerPageOptions={[50]}
             disablecheckboxSelection
           />
         </ContainerViewAsset>
-      </form>
+      </ContainerForm>
     </ContainerDashboard>
     </Container>
   );

@@ -11,7 +11,7 @@ function App() {
   console.log("auth App", auth)
 
   return (
-    auth ? <PrivateRoutering/> : <PublicRoutering/>
+    <PrivateRoutering/>
   );
 }
 

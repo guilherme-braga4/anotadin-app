@@ -14,18 +14,17 @@ export const ContainerDashboard = styled.div`
   background-color: #24252d;
   height: 100%;
   overflow: auto;
-
-  form {
-    // background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    // width: 80%;
-    // height: 100%;
-    margin: auto;
-  }
 `;
+
+export const ContainerForm = styled.div`
+// background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // width: 80%;
+  // height: 100%;
+  margin: auto;`
 
 export const ContainerInputButton = styled.div`
   display: flex;

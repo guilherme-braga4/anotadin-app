@@ -20,7 +20,7 @@ const Header = () => {
       <Container>
         <HeaderUser>
           <h1>Seja bem Vindo</h1>
-          <a>{data.user.nome}</a>
+          <a>{data?.user?.nome}</a>
         </HeaderUser>
         <HeaderStyled>
           <ContainerStyled>

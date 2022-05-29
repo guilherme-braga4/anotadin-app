@@ -10,7 +10,7 @@ const PrivateRoutering = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Dashboard/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
       </Routes>
     </Router>
   );
