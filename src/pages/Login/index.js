@@ -30,14 +30,13 @@ const Login = () => {
      setData(response)
      localStorage.setItem("@AnotadinApp Auth", true);
      localStorage.setItem("@AnotadinApp JWT", response.token.token);
+     localStorage.setItem("@AnotadinApp User_Id", response.user.id);
+     localStorage.setItem("@AnotadinApp User_Nome", response.user.nome);
+     localStorage.setItem("@AnotadinApp User_Email", response.user.email);
+
      <Navigate to="/dashboard" replace={true} />
      navigate("/dashboard", { replace: true })
      window.location.reload();
-    //  localStorage.setItem("@AnotadinApp User", {
-    //   id: response.user.id,
-    //   nome: response.user.nome, 
-    //   email: response.user.email
-    // });
      console.log("data state", data)
     }
   }

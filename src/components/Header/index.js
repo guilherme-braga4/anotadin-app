@@ -17,13 +17,15 @@ const Header = () => {
   const { data } = useContext(AuthContext)
   console.log("data Header", data)
   const navigate = useNavigate()
+  const userName = localStorage.getItem("@AnotadinApp User_Nome")
+  
 
   return (
     <>
       <Container>
         <HeaderUser>
           <h1>Seja bem Vindo</h1>
-          <a>{data?.user?.nome}</a>
+          <a>{userName}</a>
         </HeaderUser>
         <HeaderStyled>
           <ContainerStyled>

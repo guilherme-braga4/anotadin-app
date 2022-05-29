@@ -33,15 +33,8 @@ const Dashboard = () => {
     fetchCriptos()
   }, []);
 
-  //POST-> Create a New Asset
-    async function createNewAsset(event) {
-      const res = api.post('/cripto')
-      if (res) {
-        setData(res)
-      }
-    }
 
-  // Lidando com as mudanças do componente
+  // Set Filters Terms
   const handleChange = (event) => {
     console.log("event.target.value", event.target.value);
     if (event.target.name == "nome") {
@@ -57,6 +50,7 @@ const Dashboard = () => {
   console.log("searchName", searchName)
   console.log("searchSymbol", searchSymbol)
 
+  
   //----> Filtering Cripto by Name: Caso haja estado de "Search", irá atuar como filtro; caso não, atuará como (data)
   //OBS: é um filtro duplo, capaz de Pesquisar por Nome ou Símbolo
   let filterCoinsName
@@ -76,10 +70,7 @@ const Dashboard = () => {
     return filterCoinsName
 }
 
-  // console.log("filterCoinsName", filterCoinsName)
-
   let dataFiltered = filtering()
-  console.log("dataFiltered", dataFiltered)
   //-------->>>>
 
 

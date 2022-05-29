@@ -5,10 +5,11 @@ import api from '../../services/api'
 import AuthContext from '../../contexts/AuthContext'
 
 const ModalCripto = ({setOpenModal, dataModal}) => {
-  const [ data ] = useContext(AuthContext)
+  const userId = localStorage.getItem("@AnotadinApp User_Id")
 
-  const [form, setForm] = useState({user_id: data.id, nome: dataModal.name, simbolo: dataModal.symbol})
+  const [form, setForm] = useState({user_id: userId, nome: dataModal.name, simbolo: dataModal.symbol})
   const [quantidade, setQuantidade] = useState(0)
+  // const {data}  = useContext(AuthContext)
 
   console.log("form", form)
  
