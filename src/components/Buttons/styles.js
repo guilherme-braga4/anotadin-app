@@ -48,9 +48,9 @@ export const ButtonAdd = styled.button`
   cursor: pointer;
   border-radius: 30px;
   border: none;
-  min-width: 250px;
-  width: 250px;
-  height: 45px;
+  min-width: 150px;
+  width: 180px;
+  height: 35px;
 }
 
  :hover {

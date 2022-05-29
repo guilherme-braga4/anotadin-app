@@ -9,3 +9,19 @@
 .yup-container {
   color: rgb(255, 239, 239);
 }
+
+.cripto-image {
+  width: 60px;
+  height: 60px;
+}
+
+.high_24h {
+  color: green !important;
+  font-weight: bold !important;
+  /* background-color: red; */
+}
+
+.low_24h {
+  color: red !important;
+  font-weight: bold !important;
+}

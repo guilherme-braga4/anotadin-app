@@ -3,9 +3,11 @@ import { Container, ContainerDashboard, ContainerInputButton, ContainerInputs, C
 import { ButtonAdd } from '../../components/Buttons/styles'
 import { DataGrid } from "@material-ui/data-grid";
 import api from "../../services/api";
+import { apiCoin } from "../../services/api";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import Header from '../../components/Header/index'
+import '../../../src/index.css'
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
@@ -14,37 +16,23 @@ const Dashboard = () => {
 
   //GET-> Show all Assets
   useEffect(() => {
-    // try {
-    console.log("aqui");
-    api
-      .get(`/criptomoedas`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((error) => {
-        console.log("Algo deu errado " + error);
-      });
+    async function fetchCriptos () {
+      const {data: response} = await apiCoin.get("coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+      if (response) {
+        setData(response)
+        console.log("data Criptomoedas", response)
+      }
+    }
+    fetchCriptos()
   }, []);
 
   //POST-> Create a New Asset
-  async function handleSubmit(event) {
-    // event.preventDefault();
-    console.log("submit");
-    console.log("aqui 2");
-    const data = {
-      nome: form?.nome,
-      quantidade: form?.quantidade,
-    };
-    api
-      .post(`/criptomoedas`, data)
-      .then((res) => {
-        console.log("res.data", res.data);
-        setData(res.data);
-      })
-      .catch((error) => {
-        console.log("Algo deu errado" + error);
-      });
-  }
+    async function createNewAsset(event) {
+      const res = api.post('/cripto')
+      if (res) {
+        setData(res)
+      }
+    }
 
   // Lidando com as mudanças do componente
   const handleChange = (event) => {
@@ -55,20 +43,34 @@ const Dashboard = () => {
 
   //dataGrid - Tabela
   const columns = [
-    { field: "id", headerName: "ID", width: 150 },
-    { field: "nome", headerName: "Ativo", width: 300 },
-    { field: "quantidade", headerName: "Quantidade", width: 250 },
+    { field: "id", headerName: "Criptomoeda", width: 150 },
+    { field: "image", 
+      headerName: "Imagem", 
+      width: 150,
+      renderCell: (params) => <img className="cripto-image" src={params.value}/>
+    },
+    { field: "symbol", headerName: "Símbolo", width: 150 },
+    {
+      field: "price_change_24h",
+      headerName: "Flutuação",
+      width: 250,
+      renderCell: (params) => params.value > 0 ? <div className="high_24h">{params.value}</div> : <div className="low_24h">{params.value}</div>,
+    },
+    { field: "current_price", headerName: "Preço Atual", width: 250 },
+    { field: "high_24h", headerName: "Alta em 24h", width: 200 },
+    { field: "low_24h", headerName: "Baixa em 24h", width: 250 },
     {
       field: "edit",
-      headerName: "Editar",
-      width: 150,
-      renderCell: (params) => <AutoFixNormalIcon/>,
-    },
-    {
-      field: "delete",
-      headerName: "Excluir",
-      width: 150,
-      renderCell: (params) => <RemoveCircleIcon />,
+      headerName: "Cadastrar",
+      width: 300,
+      renderCell: (params) => <ButtonAdd
+      type="submit"
+      onClick={() => {
+        createNewAsset();
+      }}
+    >
+      Adicionar Ativo
+    </ButtonAdd>,
     },
   ];
 
@@ -86,36 +88,37 @@ const Dashboard = () => {
     <Container>
     <Header/>
     <ContainerDashboard>
-      <form onSubmit={handleSubmit}>
+      <form>
         <ContainerInputButton>
           {/* <InputButtonBorderLine> */}
             <header>
               <ContainerInputs>
                 <div>
-                  <label>Ativo</label>
+                  <label>Pesquisar Cripto</label>
                   <input
                     name="nome"
                     onChange={handleChange}
-                    placeholder="Digite o Nome do Ativo"
+                    // placeholder="Digite o Nome do Ativo"
+                    type="text"
                   />
                 </div>
                 <div>
-                  <label>Quantidade</label>              
+                  <label>Pesquisar Símbolo</label>              
                   <input
-                    type="number"
+                    type="text"
                     name="quantidade"
                     onChange={handleChange}
-                    placeholder="Digite o Valor Investido"
+                    // placeholder="Digite o Valor Investido"
                   />
                 </div>
-                <ButtonAdd
+                {/* <ButtonAdd
                   type="submit"
                   onClick={() => {
-                    handleSubmit();
+                    createNewAsset();
                   }}
                 >
                   Adicionar Ativo
-                </ButtonAdd>
+                </ButtonAdd> */}
               </ContainerInputs>
             </header>    
           {/* </InputButtonBorderLine> */}
@@ -124,8 +127,8 @@ const Dashboard = () => {
           <DataGrid
             rows={data}
             columns={columns}
-            pageSize={20}
-            rowsPerPageOptions={[20]}
+            pageSize={50}
+            rowsPerPageOptions={[50]}
             disablecheckboxSelection
           />
         </ContainerViewAsset>

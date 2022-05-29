@@ -21,8 +21,8 @@ export const ContainerDashboard = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 80%;
-    height: 100%;
+    // width: 80%;
+    // height: 100%;
     margin: auto;
   }
 `;
@@ -81,7 +81,7 @@ export const ContainerInputs = styled.div`
     width: 250px;
     height: 50px;
     font-size: 20px;
-    color: #eb1484;
+    color: white;
     padding: 20px;
   }
 
@@ -103,9 +103,9 @@ export const ContainerInputs = styled.div`
 export const ContainerViewAsset = styled.div`
   justify-content: space-around;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 10px auto;
+  width: 1800px;
+  height: 1500px;
+  margin: 1rem auto;
   background-color: #1b1a21;
   border-radius: 30px;
 
@@ -114,7 +114,6 @@ export const ContainerViewAsset = styled.div`
     font-size: 20px;
     color: white;
     border: none;
-
 
     // background-color: yellow;
   }
