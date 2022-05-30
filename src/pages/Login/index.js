@@ -64,7 +64,7 @@ const Login = () => {
    }
  }
  catch (err) {
-  toast.error("Algo deu errado ao efetuar o Login")
+  toast.error("Algo deu errado ao efetuar o Cadastro")
  }
 }
 
