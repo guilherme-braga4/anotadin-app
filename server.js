@@ -2,7 +2,7 @@ const express = require('express')
 const { resolve } = require('path')
 const path = require('path');
 const app = express()
-app.use(cors())
+// app.use(cors())
 
 //Estáticos -> Roteamento dos Componentes
 app.use('/',
