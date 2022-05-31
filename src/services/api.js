@@ -1,12 +1,11 @@
 import axios from "axios";
-//MockApi
-// const api = axios.create({
-//   baseURL: 'https://628965bbe5e5a9ad3218d8f0.mockapi.io/' ,
-// });
+const token = localStorage.getItem("@AnotadinApp JWT");
 
-//MockApi
 const api = axios.create({
   baseURL: 'http://127.0.0.1:3333/api' ,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
 });
 
 export const apiCoin = axios.create({
