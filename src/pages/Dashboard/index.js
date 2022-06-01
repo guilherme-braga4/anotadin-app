@@ -18,6 +18,7 @@ const Dashboard = () => {
   const [dataModal, setDataModal] = useState({});
   const [searchName, setSearchName] = useState("");
   const [searchSymbol, setSearchSymbol] = useState("");
+  // const [dataFiltering, setDataFiltering] = useState([])
 
   console.log("dataModal", dataModal)
   
@@ -50,26 +51,31 @@ const Dashboard = () => {
   console.log("searchName", searchName)
   console.log("searchSymbol", searchSymbol)
 
-  
+
   //----> Filtering Cripto by Name: Caso haja estado de "Search", irá atuar como filtro; caso não, atuará como (data)
   //OBS: é um filtro duplo, capaz de Pesquisar por Nome ou Símbolo
+  //A função é executada quando a função handleChange "seta" os estados referente aos valores dos filtros. [re-render]
   let filterCoinsName
-  function filtering () {
-     filterCoinsName = data.filter((coin) => coin.name.toLowerCase()
-    .includes(searchName.toLowerCase()))
-    if (filterCoinsName.length < data.length) {
-      filterCoinsName = filterCoinsName.filter((coin) => coin.symbol.toLowerCase()
-      .includes(searchSymbol.toLowerCase()))
-      return filterCoinsName
+   function filtering () {
+    try {
+      filterCoinsName = data?.filter((coin) => coin.name.toLowerCase()
+      .includes(searchName.toLowerCase()))
+      if (filterCoinsName.length < data.length) {
+        filterCoinsName = filterCoinsName.filter((coin) => coin.symbol.toLowerCase()
+        .includes(searchSymbol.toLowerCase()))
+        return filterCoinsName
+      }
+      if (searchName == "") {
+        console.log("filtrando apenas o símbolo", filterCoinsName)
+        filterCoinsName =  data?.filter((coin) => coin.symbol.toLowerCase()
+        .includes(searchSymbol.toLowerCase()))
+        return filterCoinsName
+      }
+       return filterCoinsName
+    } catch (error) {
+      console.log("Não foi possível filtrar as informações " + error)
     }
-    if (searchName == "") {
-      console.log("filtrando apenas o símbolo", filterCoinsName)
-      filterCoinsName = data.filter((coin) => coin.symbol.toLowerCase()
-      .includes(searchSymbol.toLowerCase()))
-    }
-    return filterCoinsName
-}
-
+  }
   let dataFiltered = filtering()
   //-------->>>>
 
@@ -99,7 +105,7 @@ const Dashboard = () => {
       renderCell: (params) => <ButtonAdd
       type="submit"
       onClick={() => {
-        setDataModal(data.find((item) => {return (item.id == params.row.id)}))
+        setDataModal(data?.find((item) => {return (item.id == params.row.id)}))
         setOpenModal(true)
       }}
     >
