@@ -38,20 +38,6 @@ const Rendimentos = () => {
     fetchMyCriptos()
   }, []);
 
-  //PUT-> Edit Register by id
-  const handleUpdateCripto = (id) => {
-    return ( console.log("recebi o id", id) );
-  }
-
-  //Delete - Delete a Register
-  const handleDeleteCripto = (id) => {
-    return ( 
-      //Chamar Modal de Confirmação da Exclusão
-      console.log("recebi o id", id) 
-    
-    );
-  }
-
   // Set Filters Terms
   const handleChange = (event) => {
     console.log("event.target.value", event.target.value);

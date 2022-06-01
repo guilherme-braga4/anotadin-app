@@ -2,21 +2,20 @@ import React, {useState, useEffect, useContext} from 'react'
 import { Container, ContainerDisplayModal, ContainerButton, ContainerForm } from './styles.js'
 import { ButtonFilled, ButtonNoBackground } from '../Buttons/styles';
 import api from '../../services/api'
-import AuthContext from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
 const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
-  const userId = localStorage.getItem("@AnotadinApp User_Id")
-
-  const [form, setForm] = useState({user_id: userId, nome: dataModal.name, simbolo: dataModal.symbol})
-  const [quantidade, setQuantidade] = useState(0)
-  // const {data}  = useContext(AuthContext)
+  const { data } = useContext(AuthContext)
+  const [form, setForm] = useState({id: dataModal.id, nome: dataModal.name, simbolo: dataModal.symbol})
+  const [quantidade, setQuantidade] = useState(dataModal.quantidade)
+  console.log("data", data)
 
   console.log("form", form)
  
-  async function createCriptomoeda () {
+  async function handleUpdateCripto () {
     try {
-    const res = await api.put('/cripto/', form)
+    const res = await api.put(`/cripto/${data.id}`, form)
     if (res.data.data) {
       toast.success("Registro atualizado com sucesso");
       setOpenModalUpdate(false)
@@ -56,33 +55,46 @@ const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
     <Container>
       <ContainerDisplayModal>
         <ContainerForm>
-            <h1>Cadastre a sua quantidade de {dataModal.name}</h1>
+            <h1>Edite o registro #{dataModal.id} da Criptomoeda {dataModal.nome}</h1>
             <img src={dataModal.image} size={20}/>
-            <p>Complete os campos cadastrar essa Criptomoeda</p>
+            <p>Após editar os campos, clique em Salvar</p>
               <div>
                 <label>Símbolo</label>
-                <input name="symbol" disabled value={dataModal.symbol}/>
+                <input name="symbol" disabled value={dataModal.simbolo}/>
               </div>
-              <div>
+              {/* <div>
                 <label>Preço Atual</label>
                 <input name="preco_atual" type="number" disabled value={dataModal.current_price}/>
-              </div>
+              </div> */}
               <div>
                 <label>Preço de Compra</label>
-                <input placeholder="Digite o valor em Dólar" name="preco_de_compra" type="number" onChange={(e) => handleChange(e)} defaultValue={0}/>
+                <input 
+                placeholder="Digite o valor em Dólar" 
+                name="preco_de_compra" 
+                type="number" 
+                onChange={(e) => handleChange(e)} 
+                defaultValue={dataModal.preco_de_compra}/>
               </div>
               <div>
                 <label>Valor Comprado</label>
-                <input placeholder="Digite o valor em Dólar" name="valor_comprado" type="number" onChange={(e) => handleChange(e)} defaultValue={0}/>
+                <input 
+                placeholder="Digite o valor em Dólar" 
+                name="valor_comprado" 
+                type="number" 
+                onChange={(e) => handleChange(e)} 
+                defaultValue={dataModal.valor_comprado}/>
               </div>
               <div>
                 <label>Quantidade</label>
-                <input name="quantidade" disabled value={quantidade}/>
+                <input 
+                name="quantidade" 
+                disabled 
+                value={quantidade}/>
               </div>
               <ContainerButton>
                 <div>
                   <ButtonNoBackground type="submit" onClick={() => setOpenModalUpdate(false)}>Fechar</ButtonNoBackground>
-                  <ButtonFilled type="submit" onClick={() => createCriptomoeda()}>Cadastrar</ButtonFilled>
+                  <ButtonFilled type="submit" onClick={() => handleUpdateCripto()}>Salvar</ButtonFilled>
                 </div>
               </ContainerButton>
           </ContainerForm>
