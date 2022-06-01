@@ -5,7 +5,7 @@ import api from '../../services/api'
 import AuthContext from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
-const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
+const ModalCripoDelete = ({setOpenModalDelete, dataModal}) => {
   const userId = localStorage.getItem("@AnotadinApp User_Id")
 
   const [form, setForm] = useState({user_id: userId, nome: dataModal.name, simbolo: dataModal.symbol})
@@ -14,12 +14,12 @@ const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
 
   console.log("form", form)
  
-  async function createCriptomoeda () {
+  async function updateCripto () {
     try {
     const res = await api.put('/cripto/', form)
     if (res.data.data) {
       toast.success("Registro atualizado com sucesso");
-      setOpenModalUpdate(false)
+      setOpenModalDelete(false)
     }
   } catch (error) {
     console.error(error)
@@ -56,33 +56,16 @@ const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
     <Container>
       <ContainerDisplayModal>
         <ContainerForm>
-            <h1>Cadastre a sua quantidade de {dataModal.name}</h1>
+            <h1>Registro de {dataModal.nome}</h1>
             <img src={dataModal.image} size={20}/>
-            <p>Complete os campos cadastrar essa Criptomoeda</p>
+            <p>Confirme a exclusão desse Registro #{dataModal.id}</p>
               <div>
-                <label>Símbolo</label>
-                <input name="symbol" disabled value={dataModal.symbol}/>
-              </div>
-              <div>
-                <label>Preço Atual</label>
-                <input name="preco_atual" type="number" disabled value={dataModal.current_price}/>
-              </div>
-              <div>
-                <label>Preço de Compra</label>
-                <input placeholder="Digite o valor em Dólar" name="preco_de_compra" type="number" onChange={(e) => handleChange(e)} defaultValue={0}/>
-              </div>
-              <div>
-                <label>Valor Comprado</label>
-                <input placeholder="Digite o valor em Dólar" name="valor_comprado" type="number" onChange={(e) => handleChange(e)} defaultValue={0}/>
-              </div>
-              <div>
-                <label>Quantidade</label>
-                <input name="quantidade" disabled value={quantidade}/>
+                <h1>Tem certeza que gostaria de excluir esse registro?</h1>
               </div>
               <ContainerButton>
                 <div>
-                  <ButtonNoBackground type="submit" onClick={() => setOpenModalUpdate(false)}>Fechar</ButtonNoBackground>
-                  <ButtonFilled type="submit" onClick={() => createCriptomoeda()}>Cadastrar</ButtonFilled>
+                  <ButtonFilled type="submit"onClick={() => setOpenModalDelete(false)}>Cancelar</ButtonFilled>
+                  <ButtonNoBackground type="submit" onClick={() => updateCripto()}>Confirmar</ButtonNoBackground>
                 </div>
               </ContainerButton>
           </ContainerForm>
@@ -91,4 +74,4 @@ const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
    );
 }
  
-export default ModalCripoUpdate;
+export default ModalCripoDelete;

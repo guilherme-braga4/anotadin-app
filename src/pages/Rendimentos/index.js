@@ -11,13 +11,15 @@ import Modal from '@mui/material/Modal';
 import Header from '../../components/Header/index'
 import '../../../src/index.css'
 import ModalCripoUpdate from '../../components/ModalEditCripto'
+import ModalCripoDelete from '../../components/ModalDeleteCripto'
 
 const Rendimentos = () => {
   const { data: dataContext } = useContext(AuthContext)
   console.log("data Context", dataContext)
   const [form, setForm] = useState([]);
   const [data, setData] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModalUpdate, setOpenModalUpdate] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const [dataModal, setDataModal] = useState({});
   const [searchName, setSearchName] = useState("");
   const [searchSymbol, setSearchSymbol] = useState("");
@@ -36,6 +38,19 @@ const Rendimentos = () => {
     fetchMyCriptos()
   }, []);
 
+  //PUT-> Edit Register by id
+  const handleUpdateCripto = (id) => {
+    return ( console.log("recebi o id", id) );
+  }
+
+  //Delete - Delete a Register
+  const handleDeleteCripto = (id) => {
+    return ( 
+      //Chamar Modal de Confirmação da Exclusão
+      console.log("recebi o id", id) 
+    
+    );
+  }
 
   // Set Filters Terms
   const handleChange = (event) => {
@@ -52,10 +67,6 @@ const Rendimentos = () => {
 
   console.log("searchName", searchName)
   console.log("searchSymbol", searchSymbol)
-
-  const handleDelete = (id) => {
-    return ( console.log("recebi o id", id) );
-  }
    
   
   //----> Filtering Cripto by Name: Caso haja estado de "Search", irá atuar como filtro; caso não, atuará como (data)
@@ -105,26 +116,29 @@ const Rendimentos = () => {
     { field: "valor_comprado", headerName: "Valor Comprado", width: 250 },
     {
       field: "edit",
-      headerName: "Cadastrar",
-      width: 200,
+      headerName: "Editar",
+      width: 300,
       renderCell: (params) => <ButtonAdd
       type="submit"
       onClick={() => {
         setDataModal(data?.find((item) => {return (item.id == params.row.id)}))
-        setOpenModal(true)
+        setOpenModalUpdate(true)
       }}
     >
       Editar Registro
-    </ButtonAdd>,
+    </ButtonAdd>
     },
     {
-      field: "edit",
-      headerName: "Cadastrar",
-      width: 200,
+      field: "delete",
+      headerName: "Apagar",
+      width: 300,
       renderCell: (params) => 
-      <RemoveCircleIcon
-      onClick={() => {handleDelete(params.row.id)}}
-    />
+      <ButtonAdd
+      onClick={() => {
+        setDataModal(data?.find((item) => {return (item.id == params.row.id)}))
+        setOpenModalDelete(true)
+      }}
+    >Apagar Registro</ButtonAdd>
     },
   ];
 
@@ -132,9 +146,14 @@ const Rendimentos = () => {
     <Container>
     <Header/>
     <Modal
-          open={openModal}
+          open={openModalUpdate}
         >
-          <ModalCripoUpdate setOpenModal={setOpenModal} dataModal={dataModal}/>
+          <ModalCripoUpdate setOpenModalUpdate={setOpenModalUpdate} dataModal={dataModal}/>
+    </Modal>
+    <Modal
+          open={openModalDelete}
+        >
+        <ModalCripoDelete setOpenModalDelete={setOpenModalDelete} dataModal={dataModal}/>
     </Modal>
     <ContainerDashboard>
       <ContainerForm>
