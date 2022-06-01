@@ -6,9 +6,8 @@ import AuthContext from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
 const ModalCripoDelete = ({setOpenModalDelete, dataModal}) => {
-  const userId = localStorage.getItem("@AnotadinApp User_Id")
-
-  const [form, setForm] = useState({user_id: userId, nome: dataModal.name, simbolo: dataModal.symbol})
+  const { data } = useContext(AuthContext)
+  const [form, setForm] = useState({user_id: data.id, nome: dataModal.name, simbolo: dataModal.symbol})
   const [quantidade, setQuantidade] = useState(0)
   // const {data}  = useContext(AuthContext)
 

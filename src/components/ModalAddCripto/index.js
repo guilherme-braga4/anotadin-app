@@ -6,10 +6,9 @@ import AuthContext from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
 const ModalCripto = ({setOpenModal, dataModal}) => {
-  const userId = localStorage.getItem("@AnotadinApp User_Id")
-
+  const { data } = useContext(AuthContext)
   const [form, setForm] = useState({
-    user_id: userId, 
+    user_id: data.id, 
     nome: dataModal.name, 
     simbolo: dataModal.symbol, 
     image: dataModal.image
