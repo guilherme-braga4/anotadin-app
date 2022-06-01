@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import { Container, ContainerDisplayModal, ContainerButton, ContainerForm } from './styles.js'
 import { ButtonFilled, ButtonNoBackground } from '../Buttons/styles';
 import api from '../../services/api'
-import AuthContext from '../../contexts/AuthContext'
+import {AuthContext} from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
 const ModalCripto = ({setOpenModal, dataModal}) => {
@@ -73,7 +73,7 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
         <ContainerForm>
             <h1>Cadastre a sua quantidade de {dataModal.name}</h1>
             <img src={dataModal.image} size={20}/>
-            <p>Complete os campos cadastrar essa Criptomoeda</p>
+            <p>Complete os campos para cadastrar essa Criptomoeda</p>
               <div>
                 <label>Símbolo</label>
                 <input name="symbol" disabled value={dataModal.symbol}/>

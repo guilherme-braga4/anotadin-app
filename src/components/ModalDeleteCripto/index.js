@@ -2,54 +2,24 @@ import React, {useState, useEffect, useContext} from 'react'
 import { Container, ContainerDisplayModal, ContainerButton, ContainerForm } from './styles.js'
 import { ButtonFilled, ButtonNoBackground } from '../Buttons/styles';
 import api from '../../services/api'
-import AuthContext from '../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
 const ModalCripoDelete = ({setOpenModalDelete, dataModal}) => {
   const { data } = useContext(AuthContext)
-  const [form, setForm] = useState({user_id: data.id, nome: dataModal.name, simbolo: dataModal.symbol})
-  const [quantidade, setQuantidade] = useState(0)
-  // const {data}  = useContext(AuthContext)
-
-  console.log("form", form)
  
-  async function updateCripto () {
+  async function handleDeleteCripto () {
     try {
-    const res = await api.put('/cripto/', form)
+    const res = await api.delete(`/cripto/${dataModal.id}`)
     if (res.data.data) {
-      toast.success("Registro atualizado com sucesso");
+      toast.success("Registro apagado com sucesso");
       setOpenModalDelete(false)
     }
   } catch (error) {
     console.error(error)
-    toast.error("Falha ao atualizar o Registro da Criptomoeda")
+    toast.error("Falha ao apagar o Registro da Criptomoeda")
   }
   }
-
-  //----> Função que exibe a Quantidade, de acordo com o (Preço de Compra) e (Quantidade Comprada) (em R$ ou $) 
-  //Para evitar que Quantidade inicialize como NaN, é feito um tramento
-  let value
-  useEffect(() => {
-    async function CalcularQuantidadeCripto () {
-      if (form.valor_comprado !== undefined && form.preco_de_compra !== undefined) {
-      value = Number(form.valor_comprado) / Number(form.preco_de_compra) 
-      setQuantidade(value)
-      setForm({...form, quantidade: value})
-      if (form.quantidade == NaN) {
-        form.quantidade = 0
-      }
-    } else value = 0
-    }
-    CalcularQuantidadeCripto()
-  }, [form.valor_comprado, form.preco_de_compra])
-  //----> Função que exibe a Quantidade, de acordo com o (Preço de Compra) e (Quantidade Comprada) (em R$ ou $) 
-
-
-  function handleChange (e) {
-    console.log({name: e.target.name, value: e.target.value})
-    setForm({...form, [e.target.name]: e.target.value})
-  }
-
 
   return ( 
     <Container>
@@ -64,7 +34,7 @@ const ModalCripoDelete = ({setOpenModalDelete, dataModal}) => {
               <ContainerButton>
                 <div>
                   <ButtonFilled type="submit"onClick={() => setOpenModalDelete(false)}>Cancelar</ButtonFilled>
-                  <ButtonNoBackground type="submit" onClick={() => updateCripto()}>Confirmar</ButtonNoBackground>
+                  <ButtonNoBackground type="submit" onClick={() => handleDeleteCripto()}>Confirmar</ButtonNoBackground>
                 </div>
               </ContainerButton>
           </ContainerForm>

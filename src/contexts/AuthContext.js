@@ -6,6 +6,7 @@ const AuthProvider = ({children}) => {
   const authenticatedId = localStorage.getItem("@AnotadinApp User_Id")
 
   const [data, setData] = useState({id: authenticatedId})
+  console.log("data AuthContext", data)
   const [auth, setAuth] = useState(false)
   const [rendimentos, setRendimentos] = useState(false)
 
