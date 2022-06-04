@@ -10,7 +10,8 @@ import { ButtonNoBackground, ButtonFilled } from '../Buttons/styles'
 import logo from "../../images/logo.png";
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate } from "react-router-dom";
-
+import Modal from '@mui/material/Modal';
+import ModalEditUser from '../../components/ModalEditUser'
 
 
 const Header = () => {
@@ -19,11 +20,17 @@ const Header = () => {
   const navigate = useNavigate()
   const userName = localStorage.getItem("@AnotadinApp User_Nome")
   // console.log("rendimentos", rendimentos)
+  const [openModalUserEdit, setOpenModalUserEdit] = useState(false);
   
   if (rendimentos == false) {
   return (
     <>
       <Container>
+        <Modal
+          open={openModalUserEdit}
+        >
+          <ModalEditUser setOpenModalUserEdit={setOpenModalUserEdit}/>
+        </Modal>
         <HeaderUser>
           <h1>Seja bem Vindo</h1>
           <a>{userName}</a>
@@ -39,7 +46,7 @@ const Header = () => {
               <ButtonFilled onClick={() => 
                  {setRendimentos(true)
                  navigate('/rendimentos')}}>Rendimentos</ButtonFilled>
-              <ButtonFilled>Perfil</ButtonFilled>
+              <ButtonFilled onClick={() => setOpenModalUserEdit(true)}>Perfil</ButtonFilled>
               <ButtonNoBackground onClick={() => {
                 navigate("/login", { replace: true }) 
                 localStorage.removeItem("@AnotadinApp Auth")
@@ -72,7 +79,6 @@ else {
               <ButtonFilled onClick={() => 
                  {setRendimentos(false)
                  navigate('/dashboard')}}>Dashboard</ButtonFilled>
-              <ButtonFilled>Perfil</ButtonFilled>
               <ButtonNoBackground onClick={() => {
                 navigate("/login", { replace: true }) 
                 localStorage.removeItem("@AnotadinApp Auth")

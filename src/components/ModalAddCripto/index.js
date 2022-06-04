@@ -6,12 +6,13 @@ import {AuthContext} from '../../contexts/AuthContext'
 import { toast } from 'react-toastify';
 
 const ModalCripto = ({setOpenModal, dataModal}) => {
+  console.log(setOpenModal)
   const { data } = useContext(AuthContext)
   const [form, setForm] = useState({
-    user_id: data.id, 
-    nome: dataModal.name, 
-    simbolo: dataModal.symbol, 
-    image: dataModal.image
+    // user_id: data.id, 
+    // nome: dataModal.name, 
+    // simbolo: dataModal.symbol, 
+    // image: dataModal.image
   }
 )
   const [quantidade, setQuantidade] = useState(0)
@@ -21,24 +22,15 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
  
   async function createCriptomoeda () {
     try {
-    const res = await api.post('/cripto/', form)
+    const res = await api.post(`/user/`, form)
     if (res.data.data) {
       console.log("response", res.data.data)
-      toast('💸 Cripto adicionada aos Registros', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        });
-      toast.success("Acesse [Rendimentos] para conferir");
+      toast.success("Perfil atualizado com Sucesso");
       setOpenModal(false)
     }
   } catch (error) {
     console.error(error)
-    toast.error("Falha ao criar o Registro da Criptomoeda")
+    toast.error("Falha ao seu perfil")
   }
   }
 

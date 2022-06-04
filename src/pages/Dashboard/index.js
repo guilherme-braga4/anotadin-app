@@ -10,6 +10,8 @@ import Modal from '@mui/material/Modal';
 import Header from '../../components/Header/index'
 import '../../../src/index.css'
 import ModalCripto from '../../components/ModalAddCripto'
+import ModalEditUser from '../../components/ModalDeleteCripto'
+
 
 const Dashboard = () => {
   const [form, setForm] = useState([]);
@@ -18,6 +20,7 @@ const Dashboard = () => {
   const [dataModal, setDataModal] = useState({});
   const [searchName, setSearchName] = useState("");
   const [searchSymbol, setSearchSymbol] = useState("");
+
   // const [dataFiltering, setDataFiltering] = useState([])
 
   // console.log("dataModal", dataModal)

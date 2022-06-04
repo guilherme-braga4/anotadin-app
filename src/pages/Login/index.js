@@ -34,6 +34,7 @@ const Login = () => {
      localStorage.setItem("@AnotadinApp User_Id", response.user.id);
      localStorage.setItem("@AnotadinApp User_Nome", response.user.nome);
      localStorage.setItem("@AnotadinApp User_Email", response.user.email);
+     localStorage.setItem("@AnotadinApp User_Telefone", response.user.telefone);
 
      <Navigate to="/dashboard" replace={true} />
      navigate("/dashboard", { replace: true })
