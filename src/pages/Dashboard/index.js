@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
   // const [dataFiltering, setDataFiltering] = useState([])
 
-  console.log("dataModal", dataModal)
+  // console.log("dataModal", dataModal)
   
   //GET-> Show all Assets
   useEffect(() => {
@@ -48,8 +48,8 @@ const Dashboard = () => {
     console.log("handleChange", form);
   };
 
-  console.log("searchName", searchName)
-  console.log("searchSymbol", searchSymbol)
+  // console.log("searchName", searchName)
+  // console.log("searchSymbol", searchSymbol)
 
 
   //----> Filtering Cripto by Name: Caso haja estado de "Search", irá atuar como filtro; caso não, atuará como (data)
@@ -66,7 +66,7 @@ const Dashboard = () => {
         return filterCoinsName
       }
       if (searchName == "") {
-        console.log("filtrando apenas o símbolo", filterCoinsName)
+        // console.log("filtrando apenas o símbolo", filterCoinsName)
         filterCoinsName =  data?.filter((coin) => coin.symbol.toLowerCase()
         .includes(searchSymbol.toLowerCase()))
         return filterCoinsName

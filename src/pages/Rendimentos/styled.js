@@ -29,9 +29,9 @@ export const ContainerForm = styled.div`
 export const ContainerInputButton = styled.div`
   display: flex;
   width: 100%;
-  // background-color: blue;
+  // background-color: white;
   padding: 50px;
-  justify-content: center;
+  justify-content: space-around;
   
 
   header {
@@ -41,7 +41,6 @@ export const ContainerInputButton = styled.div`
     display:flex;
     align-items: center;
     justify-content: space-around;
-    width: 80%;
     height: 200px;
 
     // background-color: red;
@@ -96,6 +95,39 @@ export const ContainerInputs = styled.div`
     font-weight: bold;
     color: #eb1484;
     margin: 0px 10px 0px 0px;
+  }
+`
+
+export const ContainerIncome = styled.div`
+// background-image: linear-gradient(89.97deg, #eb1484 1.84%, #c81cc5 102.67%);
+background-color: #1b1a21;;
+  width: 100%;
+  // height: auto;
+  margin-left: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 1.5rem;
+`
+
+export const ContainerData = styled.div`
+  // background-color: #24252d;
+  background-image: linear-gradient(89.97deg, #eb1484 1.84%, #c81cc5 102.67%);
+  width: 200px;
+  height: 100px;
+  // margin: 2rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1rem;
+  text-align: center;
+
+  p {
+    color: white;
+    font-weight: bold;
+    
   }
 `
 

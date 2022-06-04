@@ -15,10 +15,10 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { data, rendimentos, setRendimentos } = useContext(AuthContext)
-  console.log("data Header", data)
+  // console.log("data Header", data)
   const navigate = useNavigate()
   const userName = localStorage.getItem("@AnotadinApp User_Nome")
-  console.log("rendimentos", rendimentos)
+  // console.log("rendimentos", rendimentos)
   
   if (rendimentos == false) {
   return (

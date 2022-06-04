@@ -9,9 +9,9 @@ const ModalCripoUpdate = ({setOpenModalUpdate, dataModal}) => {
   const { data } = useContext(AuthContext)
   const [form, setForm] = useState({id: dataModal.id, nome: dataModal.name, simbolo: dataModal.symbol})
   const [quantidade, setQuantidade] = useState(dataModal.quantidade)
-  console.log("data", data)
+  // console.log("data", data)
 
-  console.log("form", form)
+  // console.log("form", form)
  
   async function handleUpdateCripto () {
     try {

@@ -68,7 +68,7 @@ const Login = () => {
  }
 }
 
- console.log("cadastro", cadastro)
+//  console.log("cadastro", cadastro)
 
  const SigninSchema = Yup.object().shape({
   email: Yup.string().email('Email inválido, digite novamente').required('Campo obrigatório!'),

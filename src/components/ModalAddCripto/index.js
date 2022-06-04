@@ -17,7 +17,7 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
   const [quantidade, setQuantidade] = useState(0)
   // const {data}  = useContext(AuthContext)
 
-  console.log("form", form)
+  // console.log("form", form)
  
   async function createCriptomoeda () {
     try {
