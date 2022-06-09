@@ -14,6 +14,7 @@ const AuthProvider = ({children}) => {
     email: authenticatedEmail, 
     telefone: authenticatedTelefone
   })
+  
   console.log("data AuthContext", data)
   const [auth, setAuth] = useState(false)
   const [rendimentos, setRendimentos] = useState(false)

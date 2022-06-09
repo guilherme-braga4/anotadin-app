@@ -35,10 +35,8 @@ const Login = () => {
      localStorage.setItem("@AnotadinApp User_Nome", response.user.nome);
      localStorage.setItem("@AnotadinApp User_Email", response.user.email);
      localStorage.setItem("@AnotadinApp User_Telefone", response.user.telefone);
-
-     <Navigate to="/dashboard" replace={true} />
      navigate("/dashboard", { replace: true })
-     window.location.reload();
+    //  window.location.reload();
      console.log("data state", data)
     }
   }

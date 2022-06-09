@@ -83,7 +83,7 @@ else {
                 navigate("/login", { replace: true }) 
                 localStorage.removeItem("@AnotadinApp Auth")
                 localStorage.removeItem("@AnotadinApp JWT")
-                window.location.reload();
+                // window.location.reload();
                 }}>Sair</ButtonNoBackground>
             </ContainerButton>
           </ContainerStyled>
