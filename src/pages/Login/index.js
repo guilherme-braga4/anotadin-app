@@ -29,6 +29,8 @@ const Login = () => {
      console.log("response", response)
      toast.success("Login Realizado com Sucesso!");
      setData(response)
+     console.log("data state", data)
+
      localStorage.setItem("@AnotadinApp Auth", true);
      localStorage.setItem("@AnotadinApp JWT", response.token.token);
      localStorage.setItem("@AnotadinApp User_Id", response.user.id);
@@ -36,8 +38,7 @@ const Login = () => {
      localStorage.setItem("@AnotadinApp User_Email", response.user.email);
      localStorage.setItem("@AnotadinApp User_Telefone", response.user.telefone);
      navigate("/dashboard", { replace: true })
-    //  window.location.reload();
-     console.log("data state", data)
+     window.location.reload();
     }
   }
   catch (err) {

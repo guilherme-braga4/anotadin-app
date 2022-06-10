@@ -23,7 +23,7 @@ import ModalCripoDelete from '../../components/ModalDeleteCripto'
 
 const Rendimentos = () => {
   const { data: dataContext } = useContext(AuthContext)
-  // console.log("data Context", dataContext)
+  console.log("data Context", dataContext)
   const [form, setForm] = useState([]);
   const [data, setData] = useState([]);
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
@@ -33,6 +33,8 @@ const Rendimentos = () => {
   const [searchSymbol, setSearchSymbol] = useState("");
   //Estado com objeto das informações dos usuário
   const [dataUser, setDataUser] = useState({})
+  const authenticatedId = localStorage.getItem("@AnotadinApp User_Id")
+
 
   // console.log("dataModal", dataModal)
   
@@ -51,7 +53,7 @@ const Rendimentos = () => {
     }
   }
     fetchMyCriptos()
-  }, []);
+  }, [dataContext.id]);
 
   // Set Filters Terms
   const handleChange = (event) => {
