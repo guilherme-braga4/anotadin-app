@@ -22,7 +22,7 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
  
   async function createCriptomoeda () {
     try {
-    const res = await api.post(`/user/`, form)
+    const res = await api.post(`/cripto/${data.id}`, form)
     if (res.data.data) {
       console.log("response", res.data.data)
       toast.success("Perfil atualizado com Sucesso");
