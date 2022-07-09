@@ -25,12 +25,12 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
     const res = await api.post(`/cripto/`, form)
     if (res.data.data) {
       console.log("response", res.data.data)
-      toast.success("Perfil atualizado com Sucesso");
+      toast.success("Registro criado com sucesso");
       setOpenModal(false)
     }
   } catch (error) {
     console.error(error)
-    toast.error("Falha ao seu perfil")
+    toast.error("Falha ao criar o Registro da Criptomoeda")
   }
   }
 
