@@ -9,14 +9,13 @@ const ModalCripto = ({setOpenModal, dataModal}) => {
   console.log(setOpenModal)
   const { data } = useContext(AuthContext)
   const [form, setForm] = useState({
-    // user_id: data.id, 
-    // nome: dataModal.name, 
-    // simbolo: dataModal.symbol, 
-    // image: dataModal.image
+    user_id: data.id, 
+    nome: dataModal.name, 
+    simbolo: dataModal.symbol, 
+    image: dataModal.image
   }
 )
   const [quantidade, setQuantidade] = useState(0)
-  // const {data}  = useContext(AuthContext)
 
   // console.log("form", form)
  
