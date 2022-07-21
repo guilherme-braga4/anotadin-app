@@ -52,7 +52,7 @@ Para criar as Tabelas do banco de dados, execute o comando: node ace migration:r
 
 Ligando a API - npm run dev(O app rodará no endereço local porta 3000 /(http://localhost:3333/)
 
-🤔 Pontos de melhorias/correções (Em progresso):
+# 🤔 Pontos de melhorias/correções (Em progresso):
 🔨 Organizar melhor os componentes;
 🔨 Refatorar códigos visando mais organização;
 🔨 Responsividade;
