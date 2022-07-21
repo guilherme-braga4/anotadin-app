@@ -52,4 +52,17 @@ Para criar as Tabelas do banco de dados, execute o comando: node ace migration:r
 
 Ligando a API - npm run dev(O app rodará no endereço local porta 3000 /(http://localhost:3333/)
 
+🤔 Pontos de melhorias/correções (Em progresso):
+🔨 Organizar melhor os componentes;
+🔨 Refatorar códigos visando mais organização;
+🔨 Responsividade;
+🔨 Alterar roteamento após Autenticação de Cadastro, para logar automaticamente;
+🔨 Aprimorar o fluxo do compartilhamento de dados entre a aplicação (quase não utilizei props);
+🔨 Implementar uma função que calcula a projeção de ganhos, baseado na valorização dos últimos 30 dias multiplicado pela quantidade (R$) desse ativo.
+🔨 Bug: Após alterar editar um registro de criptomoeda, a quantidade dessa cripto não atualiza.
+🔨 Ainda há bugs de roteamento a serem resolvidos
+🔨 Penso em implementar um HOC para garantir mais performance e organização
+
+
+
 
